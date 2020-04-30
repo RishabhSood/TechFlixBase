@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+	<link rel="shortcut icon" type="image/png" href="img/icon.png"/>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+	<title>Techflix</title>
+</head>
+<body>
+	<section class="signin" style="background: url({{ url_for('static', filename='img/background.jpg') }}) no-repeat center center/cover;">
+		<div class="signin-top">
+			<img src="https://fontmeme.com/permalink/200429/ac1db884b28fd5b8f0f32ddc487308ec.png" alt="Techflix" border="0">
+		</div>
+		<div class="signin-area">
+			<h1>Sign Up</h1>
+			<form style="margin-left: 20%" method=POST action = "/register">
+			  <input type="text" id="username" name="username" placeholder="Username" required />
+			  <input type="password" id="password" name="password" placeholder="Password" required />
+			  <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required />
+			  <div class = "alert" style = "color: #e50914;">{{ alert }}</div>
+			  <input class = "button" type = "submit" value="Sign Up">
+			</form>
+		</div>
+	</section>
+</body>
+</html>
