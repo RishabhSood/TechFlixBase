@@ -1,13 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-<body>
-	<h1>{{ story_section }}</h1>
-	<form method = "POST" action = "/storysection">
-		<input class = "btn btn-primary" type = "submit" value="continue">
-	</form>
-</body>
+    <head>
+        <meta charset="utf-8" />
+        <title>Shuffle Text Effect with jQuery</title>
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+        <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet"> 
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    </head>
+    
+    <body>
+	<div class="user_details">
+		<div class="display_score">
+			<i class="fas fa-bullseye"></i> {{ score }}
+		</div>
+		<div class="display_rank">
+			<i class="fas fa-trophy"></i> {{ rank }}
+		</div>
+		<div class="display_user">
+			<i class="fa fa-user" aria-hidden="true"></i> {{ username }}
+	    </div>
+	</div>
+	<div class=" storypage">
+		<article>
+	    <h1 id="headline"></h1>
+	    	<p id="text">{{ story_section }}</p>
+		</article>
+		<div class="formg">
+				<form method = "POST" action = "/storysection">
+					<input type = "submit" value="continue >">
+				</form>
+		</div>
+    </div>
+           <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+    </body>
 </html>
+
