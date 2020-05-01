@@ -1,7 +1,9 @@
 # TECHFLIX
-**Description**
-> A Netflix Choices inspired event. As the story unfolds, the player is repeatedly faced with cp/CTF based qns, on anwering which, one 
-must choose the path forward. 
+**Nonfunctional right now**
+Basic implementation of auth.py
+Basic implementation of __ini__.py
+Basic MongoDB implementation of database.py
+Story.py not functional right now, waiting for upstream to release code.
 
 *Requirements to run on your PC:*
 - Python 3.8.2
