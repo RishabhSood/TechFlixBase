@@ -1,0 +1,115 @@
+@font-face{
+  font-family: 'Jackpot';
+  src: url('Sonic Empire.ttf');
+}
+
+@font-face{
+  font-family: 'King';
+  src: url('SpaceAdventure-VG4ZV.ttf');
+}
+
+body{
+	font-family: King;
+	background: #000;
+	color: #04ca9f;	
+}
+
+input[type=submit]{
+  font-family: Jackpot;
+  margin-top: 2%;
+  background-color: #04ca9f;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin-left: 50%;
+  transform: translate(-50%, 0%);
+  cursor: pointer;
+}
+
+input[type=submit]:hover{
+  opacity: 0.9;
+}
+
+.form-group input {
+  font-family: Jackpot;
+  font-size: 1.2rem;
+  background: rgba(255,255,255,0);
+  border: none;
+  display: block;
+  outline: none;
+  margin-left: 50%;
+  margin-top: 3%;
+  transform: translate(-50%, 0%);
+  width: 400px;
+  padding: 10px;
+  color: white;
+  border-bottom: solid #04ca9f 1px;
+}
+
+.questionpage{
+  position: absolute;
+  width: 50%;
+  margin-left: 50%;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  transform: translate(-50%, 0%);
+}
+.question{
+  font-family: Jackpot;
+  text-align: justify;
+  text-justify: inter-word;
+  font-size: 1.5rem;
+}
+.user_details{
+  justify-content: space-evenly;
+  display: grid;
+  grid-gap: 20%;
+  grid-template-columns: auto auto auto;
+}
+
+.display_user{
+  color: white;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  padding: 50px 0px;
+  white-space: nowrap;
+}
+
+.display_user i{
+  color: #50BFE6;
+  font-size: 2rem;
+  padding: 0px 20px;
+}
+
+.display_rank{
+  font-size: 1.5rem;
+  color: white;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+}
+
+.display_rank i{
+  color: #FFD700;
+  font-size: 2.5rem;
+  padding: 0px 20px;
+}
+
+.display_score{
+  color: white;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+
+  white-space: nowrap;
+}
+
+.display_score i{
+  color: #50BFE6;
+  font-size: 2rem;
+  padding: 0px 20px;
+}

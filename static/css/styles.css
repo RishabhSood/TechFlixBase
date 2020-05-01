@@ -1,0 +1,113 @@
+@font-face{
+  font-family: 'Jackpot';
+  src: url('SpaceAdventure-VG4ZV.ttf');
+}
+
+body{
+	margin:0;
+	overflow:hidden;
+	font-family: Jackpot;
+	background: #000;
+	color: #04ca9f;
+}
+
+article{
+	width:100%;
+	margin:auto;
+	font-size: 1.2rem;
+	position:relative;
+	text-align: justify;
+    text-justify: inter-word; 
+}
+
+.storypage{
+	width: 50%;
+	margin-left: 50%;
+	margin-top: 2%;
+	transform: translate(-50%, 0%);
+	display: flex;
+	flex-direction: column;
+}
+.story{
+  position: relative;
+  text-align: justify;
+  text-justify: inter-word;
+  font-size: 1.2rem;
+  width: 100%;
+}
+
+input[type=submit]{
+  position: fixed;
+  margin-top: 3%;
+  font-family: Jackpot;
+  font-size: 1.4rem;
+  background-color: rgba(255,255,255,0);
+  border: none;
+  color: #04ca9f;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin-left: 100%;
+  transform: translate(-100%, 0%);
+  cursor: pointer;
+  outline: none;
+  transition-property: color;
+  transition-duration: 1s;
+}
+
+input[type=submit]:hover{
+  opacity: 0.9;
+  color: #50BFE6;
+  transition-duration: 1s;
+}
+
+.user_details{
+	justify-content: space-evenly;
+	display: grid;
+	grid-gap: 20%;
+	grid-template-columns: auto auto auto;
+}
+
+.display_user{
+	color: white;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	padding: 50px 0px;
+	white-space: nowrap;
+}
+
+.display_user i{
+	color: #50BFE6;
+	font-size: 2rem;
+	padding: 0px 20px;
+}
+
+.display_rank{
+	font-size: 1.5rem;
+	color: white;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	white-space: nowrap;
+}
+
+.display_rank i{
+	color: #FFD700;
+	font-size: 2.5rem;
+	padding: 0px 20px;
+}
+
+.display_score{
+	color: white;
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+
+	white-space: nowrap;
+}
+
+.display_score i{
+	color: #50BFE6;
+	font-size: 2rem;
+	padding: 0px 20px;
+}
