@@ -1,45 +1,27 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Apr 30 07:22:21 2020
+Created on Fri May  1 11:14:06 2020
 
 @author: soodr
 """
 
-
 from flask import Flask, render_template, request, redirect, url_for, session
-from flask_mongoalchemy import MongoAlchemy
+from flask_pymongo import PyMongo
 import hashlib
 
 app = Flask(__name__)
-app.config['MONGOALCHEMY_DATABASE'] = 'TECHFLIX'
-mongo = MongoAlchemy(app)
+app.config["MONGO_URI"] = "***REMOVED***"
+app.config['MONGO_DBNAME'] = "TECHFLIX_DB"
+mongo = PyMongo(app)
+Login = mongo.db.USER_DATA
+question_data = mongo.db.QUESTIONS
+story_data = mongo.db.STORYLINE
+option_data = mongo.db.OPTIONS
+leaderboard = mongo.db.LEADERBOARD
 
-class Login(mongo.Document):
-    username = mongo.StringField()
-    password = mongo.StringField()
-    
-class Storyline(mongo.Document):
-    s_id = mongo.StringField()
-    s_content = mongo.StringField()
-    q_id = mongo.StringField()
-    
-class Questions(mongo.Document):
-    q_id = mongo.StringField()
-    question = mongo.StringField()
-    answer = mongo.StringField()
-    op_id = mongo.StringField()
-    points = mongo.IntField()
+st = story_data.find_one({'s_id': '1'})
+qn = question_data.find_one({'q_id': '1'})
 
-class Options(mongo.Document):
-    op_id = mongo.StringField()
-    opt_1 = mongo.StringField()
-    opt_2 = mongo.StringField()
-    s_id_1 = mongo.StringField()
-    s_id_2 = mongo.StringField()
-    
-st = Storyline.query.filter(Storyline.s_id == '1').first()
-qn = Questions.query.filter(Questions.q_id == '0').first()
-    
 @app.route('/')
 def index():
     if 'username' in session:
@@ -50,10 +32,10 @@ def index():
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
     if request.method == 'POST':
-        existing_user = Login.query.filter(Login.username == request.form['username']).first()
+        existing_user = Login.find_one({'username': request.form['username']})
         if existing_user is not None:
             hash = hashlib.sha256(request.form['password'].encode()).hexdigest()
-            if existing_user.password == hash:
+            if existing_user['password'] == hash:
                 session['username'] = request.form['username']
                 return redirect(url_for('index'))
             else:
@@ -66,13 +48,12 @@ def login():
 @app.route('/register', methods = ['POST', 'GET'])
 def register():
     if request.method == 'POST':
-        existing_user = Login.query.filter(Login.username == request.form['username']).first()
+        existing_user = Login.find_one({'username': request.form['username']})
         if existing_user is None:
             if request.form['password'] == request.form['confirm-password']:
                 uname = request.form['username']
                 hashpass = hashlib.sha256(request.form['password'].encode()).hexdigest()
-                new_user = Login(username = uname, password = hashpass)
-                new_user.save()
+                Login.insert_one({'username': uname, 'password': hashpass, 'score': 0})
                 session['username'] = request.form['username']
                 return redirect(url_for('index'))
             else:
@@ -85,30 +66,39 @@ def register():
 @app.route('/storysection', methods=['GET', 'POST'])
 def display_story():
     global qn
-    story_sect = st.s_content
-    qn = Questions.query.filter(Questions.q_id == st.q_id).first()
+    user = Login.find_one({'username': session['username']})
+    score = user['score']
+    story_sect = st['s_content']
+    qn = question_data.find_one({'q_id': st['q_id']})
     if request.method == 'POST':
         return redirect(url_for('display_question'))
-    return render_template('index.html', story_section = story_sect)
+    return render_template('index.html', story_section = story_sect, username = session['username'], score = score)
 
 @app.route('/question', methods=['GET', 'POST'])
 def display_question():
-    my_question = qn.question
+    my_question = qn['question']
+    user = Login.find_one({'username': session['username']})
+    score = user['score']
     if request.method == 'POST':
-        age = request.form['age']
-        if age == qn.answer:
+        answer = request.form['answer']
+        if answer == qn['answer']:
+            score += qn['points']
+            user = Login.find_one({'username': session['username']})
+            Login.update_one(user, { "$set": { "score": score } })
             return redirect(url_for('display_option'))
-    return render_template('question.html', question = my_question)
+    return render_template('question.html', question = my_question, username = session['username'], score = score)
 
 @app.route('/option', methods=['GET', 'POST'])
 def display_option():
     global qn
+    user = Login.find_one({'username': session['username']})
+    score = user['score']
     if request.method == 'POST':
         option = request.form['options']
         if option == 'option2':
             #qn = Questions.query.filter(Questions.qid == '2').first()
             return redirect(url_for('display_story'))
-    return render_template('options.html', options = "pehla prasnhna ye rha aapki screen par")
+    return render_template('options.html', option_text = "pehla prasnhna ye rha aapki screen par", username = session['username'], score = score)
 
 if __name__ == '__main__':
     app.secret_key = 'mysecret'
