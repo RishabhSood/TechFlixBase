@@ -21,7 +21,7 @@
 		<div class="optiontext">
 			{{ option_text }}	
 		</div>
-		<form method = "POST" action = "/option">
+		<form method = "POST" action = "{{ url_for("story.options") }}">
 		<div class="form">
 			<div class="radiobn">
 				<input type="radio" name="options" id="option1" value="option1" checked="checked">

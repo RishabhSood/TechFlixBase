@@ -1,4 +1,4 @@
 # Config
 
-MONGO_URI = 'mongodb://localhost:27017/techflix'
-SECRET_KEY = 'mysecret'
+MONGO_URI = 'mongodb://localhost:27017/TECHFLIX'
+SECRET_KEY = 'dev'

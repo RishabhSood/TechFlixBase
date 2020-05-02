@@ -46,7 +46,7 @@ def register():
 
     return render_template('signup.html', alert='')
 
-
+# Temporary login I needed
 @bp.route('/logout')
 def logout():
     session.clear()

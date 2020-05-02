@@ -20,7 +20,7 @@
 	<div class="questionpage">
 		<div class = "question"> {{ question }} </div>
 		<div class="ansform">
-			<form method = "POST" action = "/question" style="position: relative;">
+			<form method = "POST" action = "{{ url_for("story.question") }}" style="position: relative;">
 				<div class = "form-group">
 					<input type = "text" name = "answer" placeholder="answer">
 				</div>

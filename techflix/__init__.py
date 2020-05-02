@@ -31,6 +31,15 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    # Blueprints:
+    # Authentication
+    from . import auth
+    app.register_blueprint(auth.bp)
+
+    # Story/game  # Commented out pending functional implementation of story.py
+    from . import story
+    app.register_blueprint(story.bp)
+
     # Easier debugging
     if app.config['DEBUG']:
         @app.route('/debug')
@@ -45,11 +54,8 @@ def create_app(test_config=None):
     @app.route('/')
     def index():
         if 'username' in session:
-            return redirect(url_for('display_story'))
+            return redirect(url_for('story.story'))
 
         return render_template('home.html')
-
-    from . import auth
-    app.register_blueprint(auth.bp)
 
     return app
