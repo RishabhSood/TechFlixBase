@@ -14,3 +14,27 @@ must choose the path forward.
 *To access the MongoDb Database*
 - use the following URI: ***REMOVED***
 > Clone the directory to your pc and run the python script *app.py*, this should launch the website locally on 'http://127.0.0.1:5000/'.
+
+**Credits:**
+
+**FrontEnd WebDev Team:**
+> - [Gaurang Aggarwal](https://github.com/gaurang-hub) 
+> - [Jashanjot Singh](https://github.com/Jashan01)
+> - [Rishabh Sood](https://github.com/RishabhSood)
+
+**BackEnd WebDev Team:**
+> - [Mihir](https://github.com/AulonSal)
+> - [Rishabh Sood](https://github.com/RishabhSood)
+
+**Story Authored By:**
+
+> Yet to be written.
+
+**Problem Selection and Reframing:**
+
+> Yet to be added.
+
+**An idea by:**
+> - [Rishabh Sood](https://github.com/RishabhSood)
+
+>Team CCS
