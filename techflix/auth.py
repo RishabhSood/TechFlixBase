@@ -1,7 +1,8 @@
+import functools
 import hashlib
 
 from flask import (
-    Blueprint, render_template, redirect, url_for, request, session, g
+    Blueprint, render_template, redirect, url_for, request, session, g,
 )
 
 bp = Blueprint('auth', __name__)
@@ -46,8 +47,21 @@ def register():
 
     return render_template('signup.html', alert='')
 
+
 # Temporary login I needed
 @bp.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
+
+# login_required decorator.
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        username = session.get('username')
+        if username is None:
+            return redirect(url_for('auth.login'))
+        return view(**kwargs)
+
+    return wrapped_view

@@ -1,11 +1,13 @@
 from flask import (
     Blueprint, render_template, request, redirect, g, session, url_for
 )
+from .auth import login_required
 
 bp = Blueprint('story', __name__)
 
 
 @bp.route('/storysection', methods=['GET', 'POST'])
+@login_required
 def story():
     from .database import users, stories
 
@@ -21,6 +23,7 @@ def story():
 
 
 @bp.route('/question', methods=['GET', 'POST'])
+@login_required
 def question():
     from .database import users
 
