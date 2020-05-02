@@ -11,10 +11,10 @@
 			<i class="fas fa-bullseye"></i> {{ score }}
 		</div>
 		<div class="display_rank">
-			<i class="fas fa-trophy"></i> {{ rank }}
+			<a href="{{ url_for('leaderboard') }}"><i class="fas fa-trophy"></i></a> {{ rank }}
 		</div>
 		<div class="display_user">
-			<i class="fa fa-user" aria-hidden="true"></i> {{ username }}
+			<i class="fa fa-user" aria-hidden="true"></i> {{ username }} <a href ="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt" style = "font-size: 2rem; color: #D21F3C"></i></a>
 	    </div>
 	</div>
 	<div class="questionpage">
