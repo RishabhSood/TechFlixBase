@@ -11,4 +11,6 @@ must choose the path forward.
 - Hashlib
 - Flask
 
+*To access the MongoDb Database*
+- use the following URI: ***REMOVED***
 > Clone the directory to your pc and run the python script *app.py*, this should launch the website locally on 'http://127.0.0.1:5000/'.
