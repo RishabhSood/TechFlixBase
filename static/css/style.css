@@ -558,7 +558,7 @@ img{
 	cursor: pointer;
 }
 
-input[type=text], input[type=password] {
+input[type=text], input[type=password], input[type=email] {
   font-size: 1rem;
   width: 75%;
   padding: 1rem 1rem;
