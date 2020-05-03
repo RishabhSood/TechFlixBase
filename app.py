@@ -56,7 +56,7 @@ def register():
             if request.form['password'] == request.form['confirm-password']:
                 uname = request.form['username']
                 hashpass = hashlib.sha256(request.form['password'].encode()).hexdigest()
-                Login.insert_one({'username': uname, 'password': hashpass, 'score': 0, 'time': datetime.datetime.utcnow(), 's_id': '1'})
+                Login.insert_one({'email': request.form['email'], 'username': uname, 'password': hashpass, 'score': 0, 'time': datetime.datetime.utcnow(), 's_id': '1'})
                 session['username'] = request.form['username']
                 return redirect(url_for('index'))
             else:
