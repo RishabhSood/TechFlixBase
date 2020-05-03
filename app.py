@@ -13,19 +13,19 @@ import pymongo
 
 app = Flask(__name__)
 app.config["MONGO_URI"] = (
-    "***REMOVED***"
+    "mongodb://localhost:27017/techflix"
 )
-app.config['MONGO_DBNAME'] = "TECHFLIX_DB"
+# app.config['MONGO_DBNAME'] = "TECHFLIX_DB"
 mongo = PyMongo(app)
-Login = mongo.db.USER_DATA
-question_data = mongo.db.QUESTIONS
-story_data = mongo.db.STORYLINE
-option_data = mongo.db.OPTIONS
-leaderboard = mongo.db.LEADERBOARD
+Login = mongo.db.users
+question_data = mongo.db.questions
+story_data = mongo.db.story
+option_data = mongo.db.options
+leaderboard = mongo.db.leaderboad
 
-st = story_data.find_one({'s_id': '1'})
-qn = question_data.find_one({'q_id': '0'})
-op = option_data.find_one({'op_id': '0'})
+st = story_data.find_one({'id': '1'})
+qn = question_data.find_one({'story_id': '0'})
+op = option_data.find_one({'story_id': '0'})
 
 
 @app.route('/')
@@ -41,8 +41,8 @@ def login():
     if request.method == 'POST':
         existing_user = Login.find_one({'username': request.form['username']})
         if existing_user is not None:
-            hash = hashlib.sha256(request.form['password'].encode()).hexdigest()
-            if existing_user['password'] == hash:
+            hash_ = hashlib.sha256(request.form['password'].encode()).hexdigest()
+            if existing_user['password'] == hash_:
                 session['username'] = request.form['username']
                 return redirect(url_for('index'))
             else:
@@ -66,7 +66,7 @@ def register():
                                   'password': hashpass,
                                   'score': 0,
                                   'time': datetime.datetime.utcnow(),
-                                  's_id': '1'})
+                                  'story_id': '1'})
                 session['username'] = request.form['username']
                 return redirect(url_for('index'))
             else:
@@ -82,10 +82,10 @@ def display_story():
     global qn
     global st
     user = Login.find_one({'username': session['username']})
-    st = story_data.find_one({'s_id': user['s_id']})
+    st = story_data.find_one({'id': user['story_id']})
     score = user['score']
-    story_sect = st['s_content']
-    qn = question_data.find_one({'q_id': st['q_id']})
+    story_sect = st['text']
+    qn = question_data.find_one({'story_id': st['id']})
     if request.method == 'POST':
         return redirect(url_for('display_question'))
     return render_template('index.html', story_section=story_sect, username=session['username'], score=score)
@@ -94,10 +94,11 @@ def display_story():
 @app.route('/question', methods=['GET', 'POST'])
 def display_question():
     global op
-    my_question = qn['question']
+    qn = question_data.find_one({'story_id': st['id']})
+    my_question = qn['text']
     user = Login.find_one({'username': session['username']})
     score = user['score']
-    op = option_data.find_one({'op_id': qn['op_id']})
+    op = option_data.find_one({'story_id': qn['story_id']})
     if request.method == 'POST':
         answer = request.form['answer']
         if answer == qn['answer']:
@@ -117,19 +118,24 @@ def display_option():
     if request.method == 'POST':
         option = request.form['options']
         if option == 'option1':
-            qn = question_data.find_one({'q_id': op['q_id']})
-            st = story_data.find_one({'s_id': op['s_id_1']})
+            qn = question_data.find_one({'story_id': op['story_id']})
+            st = story_data.find_one({'id': op['option_1']['story_id']})
             score += qn['points']
-            Login.update_one(user, {"$set": {"score": score, "s_id": op['s_id_1']}})
+            Login.update_one(user, {"$set": {"score": score, "story_id": op['option_1']['story_id']}})
             return redirect(url_for('display_story'))
         if option == 'option2':
-            qn = question_data.find_one({'q_id': op['q_id']})
-            st = story_data.find_one({'s_id': op['s_id_2']})
+            qn = question_data.find_one({'story_id': op['story_id']})
+            st = story_data.find_one({'id': op['option_2']['story_id']})
             score += qn['points']
-            Login.update_one(user, {"$set": {"score": score, "s_id": op['s_id_2']}})
+            Login.update_one(user, {"$set": {"score": score, "story_id": op['option_2']['story_id']}})
             return redirect(url_for('display_story'))
-    return render_template('options.html', option_text=op['option_text'], option1=op['opt_1'], option2=op['opt_2'],
-                           username=session['username'], score=score)
+    return render_template('options.html',
+                           option_text=op['text'],
+                           option1=op['option_1']['text'],
+                           option2=op['option_2']['text'],
+                           username=session['username'],
+                           score=score,
+                           )
 
 
 @app.route('/leaderboard')
@@ -148,8 +154,12 @@ def leaderboard():
         rank_list += [rank]
         rank += 1
     user = session['username']
-    return render_template("leaderboard.html", users=users_list, scores=scores_list,
-                           ranks=rank_list, truser=user, userrank=user_rank)
+    return render_template("leaderboard.html",
+                           users=users_list,
+                           scores=scores_list,
+                           ranks=rank_list, truser=user,
+                           userrank=user_rank,
+                           )
 
 
 @app.route('/logout')
