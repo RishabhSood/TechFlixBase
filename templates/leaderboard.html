@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/leader.css') }}">
+</head>
+<body>
+<div class="top">
+	GLOBAL RANK <br> {{ userrank }}
+</div>
+<div class="display">
+	<div class = "leaderboard">
+		<ul class = "rank">
+			{% for rank in ranks %}
+				<li>{{ rank }}</li>
+			{% endfor %}
+		</ul>
+		<ul class = "users">
+			{% for user in users %}
+				{% if user|string() == truser|string() %}
+				<li class="yellow" style="color: yellow;">{{ user }}</li>
+				{% else %}
+				<li>{{ user }}</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+
+		<ul class = "scores">
+			{% for score in scores %}
+				<li>{{ score }}</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+</body>
+</html>
