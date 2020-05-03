@@ -7,13 +7,14 @@
 	<title>Techflix</title>
 </head>
 <body>
-	<section class="signin" style="background: url({{ url_for('static', filename='img/back2.gif') }}) no-repeat center center/cover;">
+	<section class="signin" style="background: url({{ url_for('static', filename='img/back.gif') }}) no-repeat center center/cover;">
 		<div class="signin-top">
 			<img src="https://fontmeme.com/permalink/200429/ac1db884b28fd5b8f0f32ddc487308ec.png" alt="Techflix" border="0">
 		</div>
 		<div class="signin-area">
 			<h1>Sign Up</h1>
 			<form style="margin-left: 20%" method=POST action = "/register">
+			  <input type="email" id="email" name="email" placeholder="Email-Id" required />
 			  <input type="text" id="username" name="username" placeholder="Username" required />
 			  <input type="password" id="password" name="password" placeholder="Password" required />
 			  <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password" required />
