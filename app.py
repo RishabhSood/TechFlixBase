@@ -15,8 +15,8 @@ app = Flask(__name__)
 app.config["MONGO_URI"] = (
     "***REMOVED***"
 )
-# app.config['MONGO_DBNAME'] = "TECHFLIX_DB"
 mongo = PyMongo(app)
+
 Login = mongo.db.users
 question_data = mongo.db.questions
 story_data = mongo.db.story
