@@ -1,6 +1,6 @@
 @font-face{
   font-family: 'Jackpot';
-  src: url('Sonic Empire.ttf');
+  src: url('ShareTechMono.ttf');
 }
 
 @font-face{
@@ -16,6 +16,7 @@ body{
 
 input[type=submit]{
   font-family: Jackpot;
+  font-size:15px;
   margin-top: 2%;
   background-color: #04ca9f;
   border: none;
