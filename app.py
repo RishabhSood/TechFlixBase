@@ -36,7 +36,7 @@ def index():
     return render_template('home.html')
 
 
-@app.route('/login', methods = ['POST', 'GET'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
         existing_user = Login.find_one({'username': request.form['username']})
@@ -120,13 +120,13 @@ def display_option():
             qn = question_data.find_one({'q_id': op['q_id']})
             st = story_data.find_one({'s_id': op['s_id_1']})
             score += qn['points']
-            Login.update_one(user, { "$set": { "score": score, "s_id": op['s_id_1']} })
+            Login.update_one(user, {"$set": {"score": score, "s_id": op['s_id_1']}})
             return redirect(url_for('display_story'))
         if option == 'option2':
             qn = question_data.find_one({'q_id': op['q_id']})
             st = story_data.find_one({'s_id': op['s_id_2']})
             score += qn['points']
-            Login.update_one(user, { "$set": { "score": score, "s_id": op['s_id_2']} })
+            Login.update_one(user, {"$set": {"score": score, "s_id": op['s_id_2']}})
             return redirect(url_for('display_story'))
     return render_template('options.html', option_text=op['option_text'], option1=op['opt_1'], option2=op['opt_2'],
                            username=session['username'], score=score)
