@@ -24,15 +24,18 @@ must choose the path forward.
 
 **BackEnd WebDev Team:**
 > - [Mihir](https://github.com/AulonSal)
+> - [Udbhav Somani](https://github.com/Udbhav18)
 > - [Rishabh Sood](https://github.com/RishabhSood)
 
-**Story Authored By:**
+**Story Authored and Reframing By:**
 
-> Yet to be written.
+> - [Mihir](https://github.com/AulonSal)
+> - [Udbhav Somani](https://github.com/Udbhav18)
 
 **Problem Selection and Reframing:**
 
-> Yet to be added.
+> - [Mihir](https://github.com/AulonSal)
+> - [Udbhav Somani](https://github.com/Udbhav18)
 
 **An idea by:**
 > - [Rishabh Sood](https://github.com/RishabhSood)
