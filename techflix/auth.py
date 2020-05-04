@@ -16,7 +16,7 @@ def register():
     if request.method == 'POST':
         # TODO: Check for empty userstring/password string
         username = request.form['username']
-        raise ValueError  # d
+        # raise ValueError  # d
 
         # Checking for preexisting user
         existing_user = users.find_one({'username': username})
