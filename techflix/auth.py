@@ -16,16 +16,16 @@ def register():
     if request.method == 'POST':
         # TODO: Check for empty userstring/password string
         username = request.form['username']
-        # raise ValueError  # d
+        raise ValueError  # d
 
         # Checking for preexisting user
         existing_user = users.find_one({'username': username})
         if existing_user:
-            return render_template('signup.html', alert='That username already exists!')
+            return render_template('register.html', alert='That username already exists!')
 
         # Checking for password conflict
         if request.form['password'] != request.form['confirm-password']:
-            return render_template('signup.html', alert='Passwords don\'t match!')
+            return render_template('register.html', alert='Passwords don\'t match!')
 
         hashed_password = hash_password(request.form['password'])
 
@@ -42,7 +42,7 @@ def register():
         session['username'] = request.form['username']
         return redirect(url_for('index'))
 
-    return render_template('signup.html', alert='')
+    return render_template('register.html', alert='')
 
 
 @bp.route('/login', methods=['POST', 'GET'])
@@ -57,11 +57,11 @@ def login():
                 session['username'] = request.form['username']
                 return redirect(url_for('index'))
             else:
-                return render_template('signin.html', alert='Invalid Username/Password')
+                return render_template('login.html', alert='Invalid Username/Password')
 
-        return render_template('signin.html', alert='Invalid Username/Password')
+        return render_template('login.html', alert='Invalid Username/Password')
 
-    return render_template('signin.html', alert='')
+    return render_template('login.html', alert='')
 
 
 # Temporary login I needed
