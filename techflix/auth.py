@@ -1,3 +1,4 @@
+import datetime
 import functools
 import hashlib
 
@@ -8,15 +9,51 @@ from flask import (
 bp = Blueprint('auth', __name__)
 
 
-@bp.route('/login', methods = ['POST', 'GET'])
+@bp.route('/register', methods=['POST', 'GET'])
+def register():
+    from .database import users
+
+    if request.method == 'POST':
+        # TODO: Check for empty userstring/password string
+        username = request.form['username']
+        # raise ValueError  # d
+
+        # Checking for preexisting user
+        existing_user = users.find_one({'username': username})
+        if existing_user:
+            return render_template('signup.html', alert='That username already exists!')
+
+        # Checking for password conflict
+        if request.form['password'] != request.form['confirm-password']:
+            return render_template('signup.html', alert='Passwords don\'t match!')
+
+        hashed_password = hash_password(request.form['password'])
+
+        users.insert_one({
+            'email': request.form['email'],
+            'username': username,
+            'password': hashed_password,
+            'score': 0,
+            'time': datetime.datetime.utcnow(),
+            'story_id': '1',
+        })
+
+        # Logging user in, may POST to login() later
+        session['username'] = request.form['username']
+        return redirect(url_for('index'))
+
+    return render_template('signup.html', alert='')
+
+
+@bp.route('/login', methods=['POST', 'GET'])
 def login():
     from .database import users
 
     if request.method == 'POST':
-        existing_user = users.find_one({'username': request.form['username']})
-        if existing_user is not None:
+        user = users.find_one({'username': request.form['username']})
+        if user is not None:
             hash_ = hashlib.sha256(request.form['password'].encode()).hexdigest()
-            if existing_user['password'] == hash_:
+            if user['password'] == hash_:
                 session['username'] = request.form['username']
                 return redirect(url_for('index'))
             else:
@@ -25,27 +62,6 @@ def login():
         return render_template('signin.html', alert='Invalid Username/Password')
 
     return render_template('signin.html', alert='')
-
-
-@bp.route('/register', methods = ['POST', 'GET'])
-def register():
-    from .database import users
-
-    if request.method == 'POST':
-        existing_user = users.find_one({'username': request.form['username']})
-        if existing_user is None:
-            if request.form['password'] == request.form['confirm-password']:
-                uname = request.form['username']
-                hashpass = hashlib.sha256(request.form['password'].encode()).hexdigest()
-                users.insert_one({'username': uname, 'password': hashpass, 'score': 0})
-                session['username'] = request.form['username']
-                return redirect(url_for('index'))
-            else:
-                return render_template('signup.html', alert='Passwords don\'t match!')
-
-        return render_template('signup.html', alert='That username already exists!')
-
-    return render_template('signup.html', alert='')
 
 
 # Temporary login I needed
@@ -65,3 +81,8 @@ def login_required(view):
         return view(**kwargs)
 
     return wrapped_view
+
+
+# Password hashing function used
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()

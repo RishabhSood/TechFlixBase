@@ -14,6 +14,7 @@ from flask import (
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
 
+    # TODO: Move to instance-only/env-var database_uri
     # Database Config
     app.config['MONGO_URI'] = (
         '***REMOVED***'

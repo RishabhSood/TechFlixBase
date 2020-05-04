@@ -10,8 +10,7 @@ from flask_pymongo import PyMongo
 
 mongo = PyMongo(current_app)
 
-users = mongo.db.USER_DATA
-questions = mongo.db.QUESTIONS
-stories = mongo.db.STORYLINE
-options = mongo.db.OPTIONS
-leaderboard = mongo.db.LEADERBOARD
+users = mongo.db.users
+question_bank = mongo.db.questions
+storyline = mongo.db.story
+optionline = mongo.db.options
