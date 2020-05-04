@@ -93,7 +93,6 @@ def display_story():
 @app.route('/question', methods=['GET', 'POST'])
 def display_question():
     global op
-    qn = question_data.find_one({'story_id': st['id']})
     my_question = qn['text']
     user = Login.find_one({'username': session['username']})
     score = user['score']
