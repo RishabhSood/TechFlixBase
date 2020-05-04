@@ -14,8 +14,8 @@ function WordShuffler(holder,opt){
 
 
   var options = {
-    fps : 30,
-    timeOffset : 5,
+    fps : 60,
+    timeOffset : 20,
     textColor : '#50BFE6',
     fontSize : "25px",
     useCanvas : false,

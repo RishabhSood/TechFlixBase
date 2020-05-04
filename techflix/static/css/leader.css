@@ -1,0 +1,69 @@
+@font-face{
+  font-family: 'Jackpot';
+  src: url('SpaceAdventure-VG4ZV.ttf');
+}
+@font-face{
+  font-family: 'Score';
+  src: url('CfGlitchCityRegular-L1vZ.ttf');
+}
+
+body{
+	font-family: Jackpot;
+	background: #000;
+	color: #04ca9f;	
+}
+
+::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+}
+
+.top{
+	display: block;
+	margin-top: 20%;
+	color: #0ffbf9;
+	width: 100%;
+	font-family: Score;
+	font-size: 3rem;
+	text-align: center;
+	position: fixed;
+	opacity: 0.3;
+}
+.display{
+	position: relative;
+	margin-left: 50%;
+	width: 60%;
+	transform: translate(-50%, 0%);
+}
+.leaderboard{
+	display: flex;
+	flex-direction: row;
+}
+
+ul.rank{
+	width: 10%;
+}
+ul.users{
+	width: 75%;
+}
+
+ul.scores{
+	width: 20%;
+}
+ul{
+	list-style-type: none;
+}
+
+li{
+	padding: 20px 5px;
+}
+
+li.yellow{
+	padding: 20px 5px;
+}
