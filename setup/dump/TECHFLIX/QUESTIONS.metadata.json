@@ -1,1 +1,0 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"TECHFLIX.QUESTIONS"}],"uuid":"d30af1b0c3ca4153bd861418416e88f4"}

@@ -24,9 +24,10 @@ def register():
         if not username:
             return render_template('register.html', alert="Username Required")
 
-        # # Why don't I store the password in a variable? Ineptitude derived security paranoia
+        # Ineptitude derived security paranoia makes me wonder if using password is wrong
+        password = request.form['password']
         # Checking for empty/no password
-        if not request.form['password']:
+        if not password:
             return render_template('register.html', alert="Password Required")
 
         # Checking for username being taken
@@ -35,10 +36,10 @@ def register():
             return render_template('register.html', alert="That username already exists!")
 
         # Checking for conflicting password entries
-        if request.form['password'] != request.form['confirm-password']:
+        if password != request.form['confirm-password']:
             return render_template('register.html', alert="Passwords don't match!")
 
-        hashed_password = hash_password(request.form['password'])
+        hashed_password = hash_password(password)
 
         users.insert_one({
             'email': request.form['email'],
@@ -49,9 +50,8 @@ def register():
             'story_id': '1',
         })
 
-        # Logging user in, may POST to login() later
-        session['username'] = request.form['username']
-        return redirect(url_for('index'))
+        # Logging user in
+        return redirect(url_for('auth.login', username=username, password=password))
 
     return render_template('register.html', alert='')
 
@@ -59,8 +59,6 @@ def register():
 @bp.route('/login', methods=['POST', 'GET'])
 def login():
     from .database import users
-
-    username = request.form['username']
 
     if request.method == 'POST':
         user = users.find_one({'username': request.form['username']})
@@ -72,7 +70,13 @@ def login():
         if user['password'] != hashed_password:
             return render_template('login.html', alert='Invalid Password')
 
-        session['username'] = request.form['username']
+# Object of type ObjectID is not json serializable (since it's mongo json) so it was causing issues when being stored ??
+# Probably cause session is a json? Makes sense, that's why session = user passed but the return couldn't happen
+# Session probably updates with the return
+# Probably why the error was not in my files, because everything here actually went well
+        session['user'] = {key: value for key, value in user.items() if key not in ('_id',)}
+        print(session.__repr__)
+
         return redirect(url_for('index'))
 
     return render_template('login.html', alert='')
@@ -88,7 +92,7 @@ def logout():
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        username = session.get('username')
+        username = session.get('user')['username']
         if username is None:
             return redirect(url_for('auth.login'))
         return view(**kwargs)

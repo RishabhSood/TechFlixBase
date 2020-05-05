@@ -8,29 +8,30 @@
 <body>
 	<div class="user_details">
 		<div class="display_score">
-			<i class="fas fa-bullseye"></i> {{ score }}
+			<i class="fas fa-bullseye"></i> {{ session['user']['score'] }}
 		</div>
 		<div class="display_rank">
-			<a href="{{ url_for('leaderboard') }}"><i class="fas fa-trophy"></i></a> {{ rank }}
+{#            Make leaderboards work#}
+{#			<a href="{{ url_for('leaderboard') }}"><i class="fas fa-trophy"></i></a> {{ rank }}#}
 		</div>
 		<div class="display_user">
-			<i class="fa fa-user" aria-hidden="true"></i> {{ username }} <a href ="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt" style = "font-size: 2rem; color: #D21F3C"></i></a>
+			<i class="fa fa-user" aria-hidden="true"></i> {{ session['user']['username'] }} <a href ="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt" style = "font-size: 2rem; color: #D21F3C"></i></a>
 	    </div>
 	</div>
 	<div class="optionpage">
 		<div class="optiontext">
-			{{ option_text }}	
+			{{ session['options']['text'] }}
 		</div>
 		<form method = "POST" action = "{{ url_for("story.options") }}">
 		<div class="form">
 			<div class="radiobn">
 				<input type="radio" name="options" id="option1" value="option1" checked="checked">
 				<label for="option1" class="label1">
-					<span>{{ option1 }}</span>
+					<span>{{ session['options']['text']['option1']['text'] }}</span>
 				</label>
 				<input type="radio" name="options" id="option2" value="option2">
 				<label for="option2" class="label2">
-					<span>{{ option2 }}</span>
+					<span>{{ session['options']['text']['option2']['text'] }}</span>
 				</label>
 			</div>
 		    <p><input type=submit value=continue></p>
