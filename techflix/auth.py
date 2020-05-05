@@ -70,10 +70,6 @@ def login():
         if user['password'] != hashed_password:
             return render_template('login.html', alert='Invalid Password')
 
-# Object of type ObjectID is not json serializable (since it's mongo json) so it was causing issues when being stored ??
-# Probably cause session is a json? Makes sense, that's why session = user passed but the return couldn't happen
-# Session probably updates with the return
-# Probably why the error was not in my files, because everything here actually went well
         session['user'] = {key: value for key, value in user.items() if key not in ('_id',)}
         print(session.__repr__)
 
@@ -92,8 +88,8 @@ def logout():
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        username = session.get('user')['username']
-        if username is None:
+        user = session.get('user')
+        if user is None:
             return redirect(url_for('auth.login'))
         return view(**kwargs)
 

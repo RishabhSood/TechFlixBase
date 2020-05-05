@@ -5,12 +5,13 @@
 from flask import (
     current_app,
 )
+import flask_pymongo
 
-from flask_pymongo import PyMongo
-
-mongo = PyMongo(current_app)
+mongo = flask_pymongo.PyMongo(current_app)
 
 users = mongo.db.users
 question_bank = mongo.db.questions
 storyline = mongo.db.story
 optionline = mongo.db.options
+
+leaderboard = users.find().sort([("score", flask_pymongo.DESCENDING), ("time", flask_pymongo.ASCENDING)])

@@ -49,6 +49,7 @@ def create_app(test_config=None):
             # from . import create_app
             # debug_app = create_app()
             # Useful for accessing, e.g, debug_app.config
+            debug_session = dict(session)
             raise ValueError
 
     # Root route
