@@ -30,15 +30,10 @@ def question():
     question_ = question_bank.find_one({'story_id': session['user']['story_id']})
 
     if request.method == 'POST':
-        from .database import users, optionline
+        from .database import users
 
         answer = request.form['answer']
         if answer == question_['answer']:
-            # TODO: Make this better as it is currently lost on logout
-            # Update the options page
-            options_ = optionline.find_one({'story_id': session['user']['story_id']})
-            session['options'] = {key: value for key, value in options_.items() if key not in ('_id',)}
-
             # Updating score
             session['user']['score'] += question_bank.find_one({'story_id': session['user']['story_id']})['points']
 
@@ -87,6 +82,13 @@ def options():
         users.update_one({'username': session['user']['username']}, {"$set": {"answered": session['user']['answered']}})
 
         return redirect(url_for('story.story'))
+
+    from .database import optionline
+
+    # TODO: Update options when question is answered/session starts(on the basis of answered)
+    # Update the options page
+    options_ = optionline.find_one({'story_id': session['user']['story_id']})
+    session['options'] = {key: value for key, value in options_.items() if key not in ('_id',)}
 
     return render_template('options.html')
 
