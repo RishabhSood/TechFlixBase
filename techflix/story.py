@@ -38,7 +38,9 @@ def question():
             session['user']['score'] += question_bank.find_one({'story_id': session['user']['story_id']})['points']
 
             # Updating answered status
-            session['user']['answered'] = True
+            user = session['user']
+            user['answered'] = True
+            session['user'] = user
 
             # Updating database
             users.update_one({'username': session['user']['username']},
