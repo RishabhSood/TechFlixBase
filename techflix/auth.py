@@ -2,7 +2,6 @@ import datetime
 import functools
 import hashlib
 
-# TODO: Clear loophole where you can load questions and then open options to go further
 from flask import (
     Blueprint, render_template, redirect, url_for, request, session, g,
 )
@@ -81,6 +80,7 @@ def register():
             'score': 0,
             'time': datetime.datetime.utcnow(),
             'story_id': '1',
+            'answered': False,
         })
 
         # Logging user in

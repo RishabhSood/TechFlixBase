@@ -21,6 +21,10 @@ def story():
 @bp.route('/question', methods=['GET', 'POST'])
 @login_required
 def question():
+    # Managing access
+    if session['user']['answered']:
+        return redirect(url_for('story.options'))
+
     from .database import question_bank
 
     question_ = question_bank.find_one({'story_id': session['user']['story_id']})
@@ -30,14 +34,24 @@ def question():
 
         answer = request.form['answer']
         if answer == question_['answer']:
-            # Update the options page
             # TODO: Make this better as it is currently lost on logout
+            # Update the options page
             options_ = optionline.find_one({'story_id': session['user']['story_id']})
             session['options'] = {key: value for key, value in options_.items() if key not in ('_id',)}
-            print(session['options'])
-            # user = users.find_one({'username': session['user']['username']})
 
-            users.update_one({'username': session['user']['username']}, {"$set": {"score": session['user']['score']}})
+            # Updating score
+            session['user']['score'] += question_bank.find_one({'story_id': session['user']['story_id']})['points']
+
+            # Updating answered status
+            session['user']['answered'] = True
+
+            # Updating database
+            users.update_one({'username': session['user']['username']},
+                             {'$set': {
+                                 'score': session['user']['score'],
+                                 'answered': session['user']['answered']
+                             }})
+
             return redirect(url_for('story.options'))
 
     return render_template('question.html', question_text=question_['text'])
@@ -46,8 +60,12 @@ def question():
 @bp.route('/options', methods=['GET', 'POST'])
 @login_required
 def options():
+    # Managing access
+    if not session['user']['answered']:
+        return redirect(url_for('story.story'))
+
     if request.method == 'POST':
-        from .database import question_bank
+        from .database import question_bank, users
 
         option = request.form['options']
 
@@ -64,7 +82,10 @@ def options():
             # TODO: Make a proper error page here
             return "Meanie, don't mess with my options"
 
-        session['user']['score'] += question_bank.find_one({'story_id': session['user']['story_id']})['points']
+        # Updating answered status in session and database
+        session['user']['answered'] = False
+        users.update_one({'username': session['user']['username']}, {"$set": {"answered": session['user']['answered']}})
+
         return redirect(url_for('story.story'))
 
     return render_template('options.html')
