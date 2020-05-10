@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Fri May  1 11:14:06 2020
-
-@author: soodr
-"""
 import os
 
 from flask import (
@@ -14,7 +8,7 @@ from flask import (
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
 
-    # TODO: Move to instance-only/env-var database_uri
+    # TODO: Move to instance/env-var-only database_uri
     # Database Config
     app.config['MONGO_URI'] = (
         '***REMOVED***'

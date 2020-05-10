@@ -2,30 +2,62 @@ import datetime
 import functools
 import hashlib
 
-# TODO: Implement method to enter debugger from any page
 # TODO: Clear loophole where you can load questions and then open options to go further
 from flask import (
     Blueprint, render_template, redirect, url_for, request, session, g,
 )
 
+
+# Functions:
+# Password hashing function
+def hash_password(password):
+    return hashlib.sha256(password.encode()).hexdigest()
+
+
+# Decorators:
+# login_required decorator.
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        user = session.get('user')
+        if user is None:
+            return redirect(url_for('auth.login'))
+        return view(**kwargs)
+
+    return wrapped_view
+
+
+# # Probably should make this and login required one function
+# logout_required decorator
+def logout_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        user = session.get('user')
+        if user:
+            return redirect(url_for('story.story'))
+        return view(**kwargs)
+
+    return wrapped_view
+
+
+# Blueprint:
 bp = Blueprint('auth', __name__)
 
 
 @bp.route('/register', methods=['POST', 'GET'])
+@logout_required
 def register():
     from .database import users
 
     if request.method == 'POST':
-        # TODO: Check for empty userstring/password string
-        username = request.form['username']
-
         # Validating form input
+        username = request.form['username']
+        password = request.form['password']
+
         # Checking for empty/no username
         if not username:
             return render_template('register.html', alert="Username Required")
 
-        # Ineptitude derived security paranoia makes me wonder if using password is wrong
-        password = request.form['password']
         # Checking for empty/no password
         if not password:
             return render_template('register.html', alert="Password Required")
@@ -41,6 +73,7 @@ def register():
 
         hashed_password = hash_password(password)
 
+        # Entering user into database
         users.insert_one({
             'email': request.form['email'],
             'username': username,
@@ -57,10 +90,12 @@ def register():
 
 
 @bp.route('/login', methods=['POST', 'GET'])
+@logout_required
 def login():
     from .database import users
 
     if request.method == 'POST':
+        # Validating user
         user = users.find_one({'username': request.form['username']})
         if not user:
             return render_template('login.html', alert='Invalid Username')
@@ -70,6 +105,7 @@ def login():
         if user['password'] != hashed_password:
             return render_template('login.html', alert='Invalid Password')
 
+        # Loading user details into session
         session['user'] = {key: value for key, value in user.items() if key not in ('_id',)}
         print(session.__repr__)
 
@@ -83,19 +119,3 @@ def logout():
     session.clear()
     return redirect(url_for('index'))
 
-
-# login_required decorator.
-def login_required(view):
-    @functools.wraps(view)
-    def wrapped_view(**kwargs):
-        user = session.get('user')
-        if user is None:
-            return redirect(url_for('auth.login'))
-        return view(**kwargs)
-
-    return wrapped_view
-
-
-# Password hashing function
-def hash_password(password):
-    return hashlib.sha256(password.encode()).hexdigest()

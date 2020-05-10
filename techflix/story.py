@@ -24,6 +24,7 @@ def question():
     from .database import question_bank
 
     question_ = question_bank.find_one({'story_id': session['user']['story_id']})
+
     if request.method == 'POST':
         from .database import users, optionline
 
@@ -88,5 +89,5 @@ def leaderboard():
         users=usernames,
         scores=scores,
         ranks=ranks,
-        user_rank = user_rank,
+        user_rank=user_rank,
     )
