@@ -1,13 +1,14 @@
-# Flask
-*.pyc
-__pycache__/
-
-instance/
-
+# virtualenv
+virt
 .pytest_cache/
 .coverage
 htmlcov/
 
+# Flask
+*.pyc
+__pycache__/
+
+# Package
 dist/
 build/
 *.egg-info/
@@ -28,11 +29,3 @@ build/
 
 # Test logs
 log.txt
-
-# virtualenv
-virt
-
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
