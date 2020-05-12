@@ -1,5 +1,7 @@
 # TECHFLIX - Restructured
-## Status: Functional, at feature parity with master
+## Status: Functional, the flagship implementation
 
 *Requirements to run on your PC:*
-- Python 3.8.2 (Maybe)
+- Python 3.6
+
+Currently hosted on: http://techflix-env.eba-egeycdfq.ap-south-1.elasticbeanstalk.com/

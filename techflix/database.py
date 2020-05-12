@@ -8,10 +8,11 @@ from flask import (
 import flask_pymongo
 
 mongo = flask_pymongo.PyMongo(current_app)
-with open('log.txt', 'a') as log_file:
-    print('1 Connection created', file=log_file)  # d
-with open('log.txt', 'a') as log_file:
-    print('2 Connection created', file=log_file)  # d
+
+# TODO: Ask for help with database stuff
+# Apparently only one connection is created at a time..
+# with open('log.txt', 'a') as log_file:
+#     print('1 Connection created', file=log_file)  # dev
 
 users = mongo.db.users
 question_bank = mongo.db.questions

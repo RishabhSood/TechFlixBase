@@ -2,6 +2,8 @@
 # Make an instance folder in the TechFlix directory, copy this file into that, configure as you wish, this config will
 # override the config in the python code.
 
-# This url can be used if you restore the datbase in setup/dump
-# MONGO_URI = 'mongodb://localhost:27017/TECHFLIX'
+# Use this to override the hardcoded uri
+# MONGO_URI =
+
+# Obviously replace this in production
 SECRET_KEY = 'dev'
