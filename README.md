@@ -27,16 +27,6 @@ must choose the path forward.
 > - [Udbhav Somani](https://github.com/Udbhav18)
 > - [Rishabh Sood](https://github.com/RishabhSood)
 
-**Story Authored and Reframing By:**
-
-> - [Mihir](https://github.com/AulonSal)
-> - [Udbhav Somani](https://github.com/Udbhav18)
-
-**Problem Selection and Reframing:**
-
-> - [Mihir](https://github.com/AulonSal)
-> - [Udbhav Somani](https://github.com/Udbhav18)
-
 **An idea by:**
 > - [Rishabh Sood](https://github.com/RishabhSood)
 
