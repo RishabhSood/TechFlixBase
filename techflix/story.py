@@ -79,9 +79,15 @@ def options():
             # TODO: Make a proper error page here
             return "Meanie, don't mess with my options"
 
-        # Updating answered status in session and database
+        # Updating answered status in session
         session['user']['answered'] = False
-        users.update_one({'username': session['user']['username']}, {"$set": {"answered": session['user']['answered']}})
+
+        # Updating answered status and story_id in databse
+        users.update_one({'username': session['user']['username']},
+                         {"$set": {
+                             "answered": session['user']['answered'],
+                             'story_id': session['user']['story_id'],
+                         }})
 
         return redirect(url_for('story.story'))
 
