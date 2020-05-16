@@ -19,4 +19,5 @@ question_bank = mongo.db.questions
 storyline = mongo.db.story
 optionline = mongo.db.options
 
-leaderboard = users.find().sort([("score", flask_pymongo.DESCENDING), ("time", flask_pymongo.ASCENDING)])
+# Debug this later, moved to story.py for now
+# leaderboard = users.find().sort([("score", flask_pymongo.DESCENDING), ("time", flask_pymongo.ASCENDING)])

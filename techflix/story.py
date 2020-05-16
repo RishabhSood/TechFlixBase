@@ -3,6 +3,8 @@ from flask import (
 )
 from .auth import login_required
 
+import flask_pymongo
+
 bp = Blueprint('story', __name__)
 
 
@@ -104,11 +106,12 @@ def options():
 @bp.route('/leaderboard')
 @login_required
 def leaderboard():
-    from .database import leaderboard
+    from .database import users
+    leaderboard_ = users.find().sort([("score", flask_pymongo.DESCENDING), ("time", flask_pymongo.ASCENDING)])
     usernames = []
     scores = []
     ranks = []
-    for rank, user in enumerate(leaderboard, start=1):
+    for rank, user in enumerate(leaderboard_, start=1):
         if user['username'] == session['user']['username']:
             user_rank = rank
         usernames.append(user['username'])
