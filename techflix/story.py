@@ -11,26 +11,26 @@ bp = Blueprint('story', __name__)
 @bp.route('/storysection', methods=['GET', 'POST'])
 @login_required
 def story():
-    from .database import storyline
+    if request.method == 'POST':
+        return redirect(url_for('story.question'))
+
+    from .database import storyline, users
 
     story_ = storyline.find_one({'id': session['user']['story_id']})
     story_text = story_['text']
-    if request.method == 'POST':
-        from .database import users
 
-        if story_.get('end', False):
-            session['user']['score'] += story_['points']
-            session['user']['end'] = True
-            print(session)
+    if story_.get('end', False):
+        user_ = session['user']
+        user_['score'] += story_['points']
+        user_['end'] = True
+        session['user'] = user_
+        print(session)
 
-            users.update_one({'username': session['user']['username']},
-                             {'$set': {
-                                 'score': session['user']['score'],
-                                 'end': session['user']['end']
-                             }})
-
-        return redirect(url_for('story.question'))
-
+        users.update_one({'username': session['user']['username']},
+                         {'$set': {
+                             'score': session['user']['score'],
+                             'end': session['user']['end']
+                         }})
     return render_template('story.html', story_text=story_text)
 
 
@@ -138,3 +138,12 @@ def leaderboard():
         ranks=ranks,
         user_rank=user_rank,
     )
+
+
+@bp.route('/end')
+@login_required
+def end():
+    if session['user']['end']:
+        return render_template('timer.html')
+
+    return redirect(url_for('story.story'))

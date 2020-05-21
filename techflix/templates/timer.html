@@ -98,13 +98,13 @@
 	<div class="showcase">
 		<div class="user_details">
 			<div class="display_score">
-				<i class="fas fa-bullseye"></i> {{ score }}
+				<i class="fas fa-bullseye"></i> {{ session['user']['score'] }}
 			</div>
 			<div class="display_rank">
-				<a href="{{ url_for('leaderboard') }}"><i class="fas fa-trophy"></i></a>
+				<a href="{{ url_for('story.leaderboard') }}"><i class="fas fa-trophy"></i></a>
 			</div>
 			<div class="display_user">
-				<i class="fa fa-user" aria-hidden="true"></i> {{ username }} <a href ="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt" style = "font-size: 2rem; color: #D21F3C"></i></a>
+				<i class="fa fa-user" aria-hidden="true"></i> {{ username }} <a href ="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt" style = "font-size: 2rem; color: #D21F3C"></i></a>
 		    </div>
 		</div>
 		<div id="clock">
