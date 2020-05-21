@@ -49,7 +49,6 @@ def create_app(test_config=None):
     # Root route
     @app.route('/')
     def index():
-        print('Index')
         if 'user' in session:
             return redirect(url_for('story.story'))
 

@@ -107,7 +107,6 @@ def login():
 
         # Loading user details into session
         session['user'] = {key: value for key, value in user.items() if key not in ('_id',)}
-        print(session.__repr__)
 
         return redirect(url_for('index'))
 
