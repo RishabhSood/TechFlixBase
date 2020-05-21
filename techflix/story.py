@@ -1,7 +1,7 @@
 from flask import (
     Blueprint, render_template, request, redirect, session, url_for
 )
-from .auth import login_required
+from .decorators import login_required
 
 import flask_pymongo
 
@@ -72,7 +72,6 @@ def options():
             user_ = session['user']
             user_['story_id'] = session['options']['option_1']['story_id']
             session['user'] = user_
-            print('yo')
         elif option == 'option_2':
             user_ = session['user']
             user_['story_id'] = session['options']['option_2']['story_id']

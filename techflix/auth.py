@@ -1,45 +1,17 @@
 import datetime
-import functools
 import hashlib
 
 from flask import (
-    Blueprint, render_template, redirect, url_for, request, session, g,
+    Blueprint, render_template, redirect, url_for, request, session,
 )
+from .decorators import logout_required
 
 
-# Functions:
-# Password hashing function
+# Helper Functions:
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
 
 
-# Decorators:
-# login_required decorator.
-def login_required(view):
-    @functools.wraps(view)
-    def wrapped_view(**kwargs):
-        user = session.get('user')
-        if user is None:
-            return redirect(url_for('auth.login'))
-        return view(**kwargs)
-
-    return wrapped_view
-
-
-# # Probably should make this and login required one function
-# logout_required decorator
-def logout_required(view):
-    @functools.wraps(view)
-    def wrapped_view(**kwargs):
-        user = session.get('user')
-        if user:
-            return redirect(url_for('story.story'))
-        return view(**kwargs)
-
-    return wrapped_view
-
-
-# Blueprint:
 bp = Blueprint('auth', __name__)
 
 
@@ -117,4 +89,3 @@ def login():
 def logout():
     session.clear()
     return redirect(url_for('index'))
-
