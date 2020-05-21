@@ -5,6 +5,12 @@
 	<link rel="shortcut icon" type="image/png" href="img/icon.png"/>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
 	<title>Techflix</title>
+	<script type="text/javascript"> 
+        window.history.forward(); 
+        function noBack() { 
+            window.history.forward(); 
+        } 
+    </script>
 </head>
 <body>
 	<section class="signin" style="background: url({{ url_for('static', filename='img/back2.gif') }}) no-repeat center center/cover;">
