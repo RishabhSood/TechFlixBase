@@ -35,6 +35,10 @@ def create_app(test_config=None):
     from . import story
     app.register_blueprint(story.bp)
 
+    # The administration logic
+    from . import handlers
+    app.register_blueprint(handlers.bp)
+
     # Easier debugging
     if app.config['DEBUG']:
         @app.route('/debug')

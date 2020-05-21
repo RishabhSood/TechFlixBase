@@ -53,6 +53,7 @@ def register():
             'time': datetime.datetime.utcnow(),
             'story_id': '1',
             'answered': False,
+            'end': False,
         })
 
         # Logging user in

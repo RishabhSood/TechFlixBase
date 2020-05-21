@@ -13,8 +13,22 @@ bp = Blueprint('story', __name__)
 def story():
     from .database import storyline
 
-    story_text = storyline.find_one({'id': session['user']['story_id']})['text']
+    story_ = storyline.find_one({'id': session['user']['story_id']})
+    story_text = story_['text']
     if request.method == 'POST':
+        from .database import users
+
+        if story_.get('end', False):
+            session['user']['score'] += story_['points']
+            session['user']['end'] = True
+            print(session)
+
+            users.update_one({'username': session['user']['username']},
+                             {'$set': {
+                                 'score': session['user']['score'],
+                                 'end': session['user']['end']
+                             }})
+
         return redirect(url_for('story.question'))
 
     return render_template('story.html', story_text=story_text)
