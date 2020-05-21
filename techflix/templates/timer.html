@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Techflix Choices - CCS</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+	<style type="text/css">
+		html,body {
+		    height: 100%;
+		}
+		*{
+			box-sizing: border-box;
+			margin: 0;
+			border: 0;
+		}
+		body {
+		    overflow: hidden;
+		    background: url({{ url_for('static', filename='img/back.gif') }}) no-repeat center center/cover;
+		}
+		p {
+		    margin: 0;
+		    padding: 0;
+		}
+		#clock {
+		    font-family: 'Share Tech Mono', monospace;
+		    color: #ffffff;
+		    text-align: center;
+		    position: absolute;
+		    left: 50%;
+		    top: 50%;
+		    transform: translate(-50%, -50%);
+		    color: #daf6ff;
+		    text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
+		    z-index: 2;
+		    .time {
+		        letter-spacing: 0.05em;
+		        padding: 5px 0;
+		    }
+		    .date {
+		        letter-spacing: 0.1em;
+		        font-size: 24px;
+		    }
+		}
+		.user_details{
+			justify-content: space-evenly;
+			display: grid;
+			grid-gap: 20%;
+			grid-template-columns: auto auto auto;
+			z-index: 3;
+		}
+
+		.display_user{
+			color: white;
+			align-items: center;
+			display: flex;
+			flex-direction: row;
+			padding: 50px 0px;
+			white-space: nowrap;
+		}
+
+		.display_user i{
+			color: #baf2ef;
+			font-size: 2rem;
+			padding: 0px 20px;
+		}
+
+		.display_rank{
+			font-size: 1.5rem;
+			color: white;
+			align-items: center;
+			display: flex;
+			flex-direction: row;
+			white-space: nowrap;
+		}
+
+		.display_rank i{
+			color: #baf2ef;
+			font-size: 2.5rem;
+			padding: 0px 20px;
+		}
+
+		.display_score{
+			color: #baf2ef;
+			align-items: center;
+			display: flex;
+			flex-direction: row;
+
+			white-space: nowrap;
+		}
+
+		.display_score i{
+			color: #baf2ef;
+			font-size: 2rem;
+			padding: 0px 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="showcase">
+		<div class="user_details">
+			<div class="display_score">
+				<i class="fas fa-bullseye"></i> {{ score }}
+			</div>
+			<div class="display_rank">
+				<a href="{{ url_for('leaderboard') }}"><i class="fas fa-trophy"></i></a>
+			</div>
+			<div class="display_user">
+				<i class="fa fa-user" aria-hidden="true"></i> {{ username }} <a href ="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt" style = "font-size: 2rem; color: #D21F3C"></i></a>
+		    </div>
+		</div>
+		<div id="clock">
+			<img src="https://fontmeme.com/permalink/200519/ab672c850cb9d04bfb9d38c885efa973.png" alt="Techflix" border="0" width="500">
+		    <p class="date" style = "font-size: 20px">EVENT CLOSING IN</p>
+		    <p id = "time" style = "font-size: 60px"></p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		// Set the date we're counting down to
+		var countDownDate = new Date("May 25, 2020 00:00:00").getTime();
+
+		// Update the count down every 1 second
+		var x = setInterval(function() {
+
+		  // Get today's date and time
+		  var now = new Date().getTime();
+		    
+		  // Find the distance between now and the count down date
+		  var distance = countDownDate - now;
+		    
+		  // Time calculations for days, hours, minutes and seconds
+		  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+		    
+		  // Output the result in an element with id="demo"
+		  document.getElementById("time").innerHTML = "<  " + days + "d " + hours + "h "
+		  + minutes + "m " + seconds + "s " + ">";
+		    
+		  // If the count down is over, write some text 
+		  if (distance < 0) {
+		    clearInterval(x);
+		    document.getElementById("time").innerHTML = "LAUNCHING TECHFLIX CHOICES";
+		  }
+		}, 1000);
+	</script>
+</body>
+</html>
