@@ -57,7 +57,7 @@ def register():
         })
 
         # Logging user in
-        return redirect(url_for('auth.login', username=username, password=password))
+        return redirect(url_for('auth.login'))
 
     return render_template('register.html', alert='')
 
