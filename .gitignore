@@ -2,7 +2,9 @@
 *.pyc
 __pycache__/
 
+# Instance
 instance/
+	instance/config.py
 
 .pytest_cache/
 .coverage
@@ -14,14 +16,14 @@ build/
 
 # Pycharm Project
 .idea
-    # Default ignored files
-    /shelf/
-    /workspace.xml
-    # Datasource local storage ignored files
-    /dataSources/
-    /dataSources.local.xml
-    # Editor-based HTTP Client requests
-    /httpRequests/
+	# Default ignored files
+	/shelf/
+    	/workspace.xml
+    	# Datasource local storage ignored files
+    	/dataSources/
+    	/dataSources.local.xml
+	# Editor-based HTTP Client requests
+	/httpRequests/
 
 # VSCode
 .vscode

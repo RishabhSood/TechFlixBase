@@ -8,6 +8,12 @@
 <div class="top">
 	GLOBAL RANK <br> {{ user_rank }}
 </div>
+
+<div class="close_button">
+	<button onclick="goBack()">
+		Close
+	</button>
+</div>
 <div class="display">
 	<div class = "leaderboard">
 		<ul class = "rank">
@@ -32,5 +38,13 @@
 		</ul>
 	</div>
 </div>
+
+<script>
+	goBack = ()=> {
+  		window.history.back();
+  		localStorage.setItem("pass",17012000);
+	}
+</script>
+
 </body>
 </html>

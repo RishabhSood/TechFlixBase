@@ -4,6 +4,22 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 	<link rel="stylesheet" href="{{ url_for('static', filename='css/qstyle.css') }}">
+	<script type="text/javascript">
+        	var check=localStorage.getItem("pass");
+        	if(check!=17012000)
+        	{
+        		localStorage.setItem("pass",0);
+	        	window.history.forward(); 
+	        	function noBack() { 
+	            	window.history.forward(); 
+	        	}
+
+	        }
+	        else
+	        {
+	        	localStorage.setItem("pass",0);
+	        }
+    	</script>
 </head>
 <body>
 	<div class="user_details">
