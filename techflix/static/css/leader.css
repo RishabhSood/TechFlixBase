@@ -78,62 +78,22 @@ li.yellow{
 	position:fixed;
 	text-align: center;
 	top:30px;
-	left:30px;
+	left:95%;
 }
 
 .close_button button {
-  background: none;
-  border: 0;
-  box-sizing: border-box;
-  color: transparent;
+  background-color: black;
+  border: none;
+  color: #04ca9f;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 32px;
   cursor: pointer;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 6px;
-  left: 50%;
-  letter-spacing: 1.5px;
-  line-height: 30px;
-  outline: none;
-  overflow: hidden;
-  padding: 3.33px 0 0;
-  position: absolute;
-  text-transform: uppercase;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 0.2s ease-in;
-  width: 33.33px;
+  transition-duration: 0.5;
 }
 
-
-.close_button button::before,
-.close_button button::after {
-  background-color: #04ca9f;
-  content: '';
-  display: block;
-  height: 2px;
-  left: 0;
-  position: absolute;
-  transform-origin: center left;
-  transition: all 0.2s ease-in;
-  width: 141.4214px;
-  z-index: -1;
-}
-
-.close_button button::before {
-  top: 0;
-  transform: rotate(45deg);
-}
-
-.close_button button::after {
-  bottom: 0;
-  transform: rotate(-45deg);
-}
-
-.close_button button:hover {
-  color: black;
-}
-
-.close_button button:hover::before,
-.close_button button:hover::after {
-  height: 50px;
-  transform: rotate(0deg);
+.close_button button:hover{
+	color: #ff073a;
+	transition-duration: 0.5;
 }
