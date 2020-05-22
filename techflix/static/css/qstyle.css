@@ -14,6 +14,17 @@ body{
 	color: #04ca9f;	
 }
 
+::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+}
+
 input[type=submit]{
   font-family: Jackpot;
   font-size:15px;
