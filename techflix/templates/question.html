@@ -43,7 +43,9 @@
 				<input class = "button" type = "submit" value="continue">
 			</form>
 		</div>
-		<div class = "alert" style = "color: #e50914;">{{ alert }}</div>
+        {% for message in get_flashed_messages() %}
+            <div class="alert" style="color: #e50914;">{{ message }}</div>
+        {% endfor %}
     </div>
 </body>
 </html>
