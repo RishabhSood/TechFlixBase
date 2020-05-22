@@ -68,13 +68,16 @@ def login():
     from .database import users
 
     if request.method == 'POST':
+        username = request.form['username'].lower()
+        password = request.form['password']
+
         # Validating user
-        user = users.find_one({'username': request.form['username']})
+        user = users.find_one({'username': username})
         if not user:
             return render_template('login.html', alert='Invalid Username')
 
         # # I might have refactored to an antipattern here
-        hashed_password = hash_password(request.form['password'])
+        hashed_password = hash_password(password)
         if user['password'] != hashed_password:
             return render_template('login.html', alert='Invalid Password')
 
