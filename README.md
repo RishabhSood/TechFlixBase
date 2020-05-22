@@ -14,20 +14,25 @@ Setup for running the app:
 `testing/create_user.py` is a click tool to create a user with chosen story_id.
 Run `python3 testing/create_user.py --help`
 
-**Credits:**
+**Description**
+> A Netflix Choices inspired event. As the story unfolds, the player is repeatedly faced with cp/CTF based qns, on anwering which, one 
+must choose the path forward. 
 
-**FrontEnd WebDev Team:**
-> - [Jashanjot Singh](https://github.com/Jashan01)
-> - [Udbhav Somani](https://github.com/Udbhav18)
-> - [Rishabh Sood](https://github.com/RishabhSood)
+**Credits:**
 
 **BackEnd WebDev Team:**
 > - [Mihir](https://github.com/AulonSal)
 > - [Rishabh Sood](https://github.com/RishabhSood)
 
+**FrontEnd WebDev Team:**
+> - [Gaurang Aggarwal](https://github.com/GaurangHub)
+> - [Jashanjot Singh](https://github.com/Jashan01)
+> - [Udbhav Somani](https://github.com/Udbhav18)
+> - [Rishabh Sood](https://github.com/RishabhSood)
+
 **Story Authored By:**
 > - [Aarya Pathania](https://github.com/Aarya135)
-> - Bhavya Gupta
+> - [Bhavya Gupta](https://github.com/bhavyagupta29)
 > - [Ishita Lyall](https://github.com/ishita-lyall)
 
 **CP Questions Collected By:**
