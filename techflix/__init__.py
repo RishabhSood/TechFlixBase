@@ -39,6 +39,11 @@ def create_app(test_config=None):
     from . import handlers
     app.register_blueprint(handlers.bp)
 
+    # Code to run only if deployed to production
+    if app.config['DEPLOY']:
+        from . import deployed
+        app.register_blueprint(deployed.bp)
+
     # Easier debugging
     if app.config['DEBUG']:
         @app.route('/debug')
