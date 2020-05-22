@@ -12,43 +12,12 @@
         	var check=localStorage.getItem("pass");
         	if(check!=17012000)
         	{
-        		(function (global) { 
+        		localStorage.setItem("pass",0);
+	        	window.history.forward(); 
+	        	function noBack() { 
+	            	window.history.forward(); 
+	        	}
 
-    if(typeof (global) === "undefined") {
-        throw new Error("window is undefined");
-    }
-
-    var _hash = "!";
-    var noBackPlease = function () {
-        global.location.href += "#";
-
-        // making sure we have the fruit available for juice (^__^)
-        global.setTimeout(function () {
-            global.location.href += "!";
-        }, 50);
-    };
-
-    global.onhashchange = function () {
-        if (global.location.hash !== _hash) {
-            global.location.hash = _hash;
-        }
-    };
-
-    global.onload = function () {            
-        noBackPlease();
-
-        // disables backspace on page except on input fields and textarea..
-        document.body.onkeydown = function (e) {
-            var elm = e.target.nodeName.toLowerCase();
-            if (e.which === 8 && (elm !== 'input' && elm  !== 'textarea')) {
-                e.preventDefault();
-            }
-            // stopping event bubbling up the DOM tree..
-            e.stopPropagation();
-        };          
-    }
-
-})(window);
 	        }
 	        else
 	        {
@@ -57,7 +26,7 @@
     	</script>
     </head>
     
-    <body>
+    <body onload="typeWriter()">
 	<div class="user_details">
 		<div class="display_score">
 			<i class="fas fa-bullseye"></i> {{ session['user']['score'] }}
@@ -70,17 +39,27 @@
 	    </div>
 	</div>
 	<div class=" storypage">
-		<article>
-	    <h1 id="headline"></h1>
-	    	<p id="text">{{ story_text }}</p>
-		</article>
+		<p id="storytext">{{ story_text }}</p>
 		<div class="formg">
 				<form method = "POST" action = "{{ url_for("story.story") }}">
 					<input type = "submit" value="continue">
 				</form>
 		</div>
     </div>
-           <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+           <script>
+				var i = 0;
+				var txt = document.getElementById("storytext").textContent;
+				document.getElementById("storytext").innerHTML = "";
+				var speed = 50;
+
+				function typeWriter() {
+				  if (i < txt.length) {
+				    document.getElementById("storytext").innerHTML += txt.charAt(i);
+				    i++;
+				    setTimeout(typeWriter, speed);
+				  }
+				}
+			</script>
     </body>
 </html>
 
