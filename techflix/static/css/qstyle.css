@@ -125,3 +125,19 @@ input[type=submit]:hover{
   font-size: 2rem;
   padding: 0px 20px;
 }
+
+.alert{
+	 animation:signup-response 2s 1;
+    -webkit-animation:signup-response 2s 1;
+    animation-fill-mode: forwards;
+} 
+
+@keyframes signup-response{
+    from {opacity :1;}
+    to {opacity :0;}
+}
+
+@-webkit-keyframes signup-response{
+    from {opacity :1;}
+    to {opacity :0;}
+}
