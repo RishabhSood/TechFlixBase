@@ -22,7 +22,7 @@ def register():
 
     if request.method == 'POST':
         # Validating form input
-        username = request.form['username']
+        username = request.form['username'].lower()
         password = request.form['password']
 
         # Checking for empty/no username

@@ -23,6 +23,10 @@ def create_user(username, password, s_id, score):
     if password is None:
         password = username
 
+    # # Why not do it before password = username ? Well, that would cause confusion on the user's end as the
+    # # password they entered when registering won't be accepted at login as passwords do not have a case restriction.
+    username = username.lower()
+
     if not (username and password):
         raise click.BadParameter("Invalid username or password")
 
