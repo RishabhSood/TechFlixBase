@@ -10,6 +10,7 @@
 
        <script type="text/javascript">
         	var check=localStorage.getItem("pass");
+
         	if(check!=17012000)
         	{
         		(function (global) { 
@@ -53,6 +54,13 @@
 	        else
 	        {
 	        	localStorage.setItem("pass",0);
+
+	        	(function (global) {
+	        		global.onload = function () {            
+			        	typeWriter();
+			        }
+
+	        	})(window);
 	        }
     	</script>
     </head>
