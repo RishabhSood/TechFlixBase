@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, render_template, request, redirect, session, url_for
+    Blueprint, render_template, request, redirect, session, url_for, flash
 )
 from .decorators import login_required
 
@@ -67,7 +67,9 @@ def question():
 
             return redirect(url_for('story.options'))
 
-    return render_template('question.html', question_text=question_['text'], alert="Wrong Answer!")
+        flash("Wrong Answer...")
+
+    return render_template('question.html', question_text=question_['text'])
 
 
 @bp.route('/options', methods=['GET', 'POST'])
