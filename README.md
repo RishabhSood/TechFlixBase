@@ -26,12 +26,12 @@ Run `python3 testing/create_user.py --help`
 > - [Rishabh Sood](https://github.com/RishabhSood)
 
 **Story Authored By:**
-> - [Aarya Pathania] (https://github.com/Aarya135)
+> - [Aarya Pathania](https://github.com/Aarya135)
 > - Bhavya Gupta
-> - [Ishita Lyall] (https://github.com/ishita-lyall)
+> - [Ishita Lyall](https://github.com/ishita-lyall)
 
 **CP Questions Collected By:**
-> - [Prikshit Batra] ()
+> - [Prikshit Batra]()
 > - [Rishabh Sood](https://github.com/RishabhSood)
 
 **CTF Questions Made By:**
