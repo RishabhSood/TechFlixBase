@@ -4,6 +4,15 @@
 	<title>Techflix Choices - CCS</title>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 	<style type="text/css">
+		@font-face{
+		  font-family: 'Jackpot';
+		  src: url('ShareTechMono.ttf');
+		}
+
+		@font-face{
+		  font-family: 'King';
+		  src: url('SpaceAdventure-VG4ZV.ttf');
+		}
 		html,body {
 		    height: 100%;
 		}
@@ -15,6 +24,7 @@
 		body {
 		    overflow: hidden;
 		    background: url({{ url_for('static', filename='img/back.gif') }}) no-repeat center center/cover;
+		    font-family: King;
 		}
 		p {
 		    margin: 0;
@@ -104,7 +114,7 @@
 				<a href="{{ url_for('story.leaderboard') }}"><i class="fas fa-trophy"></i></a>
 			</div>
 			<div class="display_user">
-				<i class="fa fa-user" aria-hidden="true"></i> {{ username }} <a href ="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt" style = "font-size: 2rem; color: #D21F3C"></i></a>
+				<i class="fa fa-user" aria-hidden="true"></i> {{ session['user']['username'] }} <a href ="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt" style = "font-size: 2rem; color: #D21F3C"></i></a>
 		    </div>
 		</div>
 		<div id="clock">
