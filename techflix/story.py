@@ -67,7 +67,7 @@ def question():
 
             return redirect(url_for('story.options'))
 
-    return render_template('question.html', question_text=question_['text'])
+    return render_template('question.html', question_text=question_['text'], alert="Wrong Answer!")
 
 
 @bp.route('/options', methods=['GET', 'POST'])
