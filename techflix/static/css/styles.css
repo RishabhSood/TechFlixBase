@@ -10,15 +10,6 @@ body{
 	color: #04ca9f;
 }
 
-article{
-	width:100%;
-	margin:auto;
-	font-size: 1.2rem;
-	position:relative;
-	text-align: justify;
-    text-justify: inter-word; 
-}
-
 .storypage{
 	width: 50%;
 	margin-left: 50%;
