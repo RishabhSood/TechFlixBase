@@ -1,14 +1,13 @@
-# virtualenv
-virt
-.pytest_cache/
-.coverage
-htmlcov/
-
 # Flask
 *.pyc
 __pycache__/
 
-# Package
+# Testing: pytest + coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Packaging
 dist/
 build/
 *.egg-info/
@@ -29,3 +28,7 @@ build/
 
 # Test logs
 log.txt
+
+# virtualenv
+virt
+

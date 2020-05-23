@@ -2,28 +2,26 @@
 *.pyc
 __pycache__/
 
-# Instance
-instance/
-	instance/config.py
-
+# Testing: pytest + coverage
 .pytest_cache/
 .coverage
 htmlcov/
 
+# Packaging
 dist/
 build/
 *.egg-info/
 
 # Pycharm Project
 .idea
-	# Default ignored files
-	/shelf/
-    	/workspace.xml
-    	# Datasource local storage ignored files
-    	/dataSources/
-    	/dataSources.local.xml
-	# Editor-based HTTP Client requests
-	/httpRequests/
+    # Default ignored files
+    /shelf/
+    /workspace.xml
+    # Datasource local storage ignored files
+    /dataSources/
+    /dataSources.local.xml
+    # Editor-based HTTP Client requests
+    /httpRequests/
 
 # VSCode
 .vscode
@@ -33,6 +31,10 @@ log.txt
 
 # virtualenv
 virt
+
+# Instance
+instance/
+    instance/config.py
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
