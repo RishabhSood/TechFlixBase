@@ -32,11 +32,12 @@ log.txt
 # virtualenv
 virt
 
-# Instance
-instance/
-    instance/config.py
-
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# Instance
+instance/
+    instance/config.py
+
