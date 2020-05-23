@@ -7,4 +7,4 @@
 
 # Obviously replace this in production
 SECRET_KEY = 'dev'
-DEPLOYED = False
+DEPLOY = False
