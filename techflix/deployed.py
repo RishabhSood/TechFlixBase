@@ -9,7 +9,7 @@ from flask import (
 bp = Blueprint('deployed', __name__)
 
 TIME_STRING_FORMAT = "%Y-%m-%d %H:%M:%S%z"
-TARGET_TIME_STRING = "2020-05-29 00:00:00+0530"
+TARGET_TIME_STRING = "2020-05-30 19:00:00+0530"
 
 TARGET_TIME = datetime.datetime.strptime(TARGET_TIME_STRING, TIME_STRING_FORMAT)
 # IST_OFFSET = datetime.timedelta(hours=5, minutes=30)
