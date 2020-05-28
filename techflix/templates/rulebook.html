@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rulebook</title>
+	<style type="text/css">
+		@font-face{
+		  font-family: 'Jackpot';
+		  src: url('SpaceAdventure-VG4ZV.ttf');
+		}
+		@font-face{
+		  font-family: 'Score';
+		  src: url('CfGlitchCityRegular-L1vZ.ttf');
+		}
+
+		@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
+
+		body{
+			font-family: Score;
+			background: #000;
+			color: #04ca9f;	
+		}
+
+		.header{
+			margin-top: 4rem;
+			text-align: center;
+			font-size: 4rem;
+		}
+		.rules{
+			margin-top: 2rem;
+			color: #50BFE6;
+			font-family: Jackpot;
+			width: 50%;
+			align-self: center;
+			margin-left: 50%;
+			transform: translate(-50%, 0);
+			line-height: 2;
+		}
+		.close_button
+		{
+			position:fixed;
+			text-align: center;
+			top:50px;
+			left:75%;
+		}
+
+		.close_button button {
+		  background: none;
+		  border: 0;
+		  box-sizing: border-box;
+		  color: transparent;
+		  cursor: pointer;
+		  font-family: 'Josefin Sans', sans-serif;
+		  font-size: 21px;
+		  font-width: bold;
+		  left: 50%;
+		  letter-spacing: 1px;
+		  line-height: 27px;
+		  outline: none;
+		  overflow: hidden;
+		  padding: 3px 0 0;
+		  position: absolute;
+		  text-transform: uppercase;
+		  top: 50%;
+		  transform: translate(-50%, -50%);
+		  transition: all 0.2s ease-in;
+		  width: 30px;
+		}
+
+
+		.close_button button::before,
+		.close_button button::after {
+		  background-color: #04ca9f;
+		  content: '';
+		  display: block;
+		  height: 2px;
+		  left: 0;
+		  position: absolute;
+		  transform-origin: center left;
+		  transition: all 0.2s ease-in;
+		  width: 141.4214px;
+		  z-index: -1;
+		}
+
+		.close_button button::before {
+		  top: 0;
+		  transform: rotate(45deg);
+		}
+
+		.close_button button::after {
+		  bottom: 0;
+		  transform: rotate(-45deg);
+		}
+
+		.close_button button:hover {
+		  color: black;
+		}
+
+		.close_button button:hover::before,
+		.close_button button:hover::after {
+		  height: 40px;
+		  transform: rotate(0deg);
+		}
+	</style>
+</head>
+<body>
+	
+	<div class="header">
+			<div class="close_button">
+				<button onclick="goBack()">
+					X
+				</button>
+			</div>
+			RULEBOOK
+	</div>
+	<div class="rules">
+		<ol>
+			<li>This is a Netflix Choices inspired event.</li>
+			<li>The event unrolls in the form of a story.</li>
+			<li>The story branches out into different paths, the path to be taken depends on the choices made by the player.</li>
+			<li>Each choice is preceded by a question, which must be answered in order to continue.</li>
+			<li>The story must not be looked over, as the choices made will affect the type and weightage of the questions that will show up next.</li>
+			<li>Successful endings will beget reward points, while reaching a dead end will cause a penalty on your score.</li>
+			<li>Once an ending is reached, your score is final and you cannot go start over.</li>
+			<li>Your result will be mailed to the id you register with, kindly ensure you fill in a correct email address.</li>
+			<li>Questions can either be of CP or CTF type.</li>
+			<li>Event starts on 30th May at 7pm.</li>
+		</ol>
+	</div>
+
+	<script>
+		goBack = ()=> {
+	  		window.history.back();
+	  		localStorage.setItem("pass",17012000);
+		}
+	</script>
+</body>
+</html>
