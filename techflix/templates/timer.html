@@ -10,13 +10,13 @@
 	<div class="showcase">
 		<div class="user_details">
 			<div class="display_score">
-				<i class="fas fa-bullseye"></i> {{ session['user']['score'] }}
+				<i class="fas fa-bullseye"></i> {{ session.get('user')['score'] }}
 			</div>
 			<div class="display_rank">
 				<a href="{{ url_for('story.leaderboard') }}"><i class="fas fa-trophy"></i></a>
 			</div>
 			<div class="display_user">
-				<i class="fa fa-user" aria-hidden="true"></i> {{ session['user']['username'] }} <a href ="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt" style = "font-size: 2rem; color: #D21F3C"></i></a>
+				<i class="fa fa-user" aria-hidden="true"></i> {{ session.get('user')['username'] }} <a href ="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt" style = "font-size: 2rem; color: #D21F3C"></i></a>
 		    </div>
 		</div>
 		<div id="clock">
@@ -27,7 +27,7 @@
 	</div>
 	<script type="text/javascript">
 		// Set the date we're counting down to
-		var countDownDate = new Date("May 28, 2020 00:00:00").getTime();
+		var countDownDate = new Date("{{ TIME_STRING_UTC }}").getTime();
 
 		// Update the count down every 1 second
 		var x = setInterval(function() {
@@ -51,7 +51,7 @@
 		  // If the count down is over, write some text 
 		  if (distance < 0) {
 		    clearInterval(x);
-		    document.getElementById("time").innerHTML = "LAUNCHING TECHFLIX CHOICES";
+		    document.getElementById("time").innerHTML = "EVENT CLOSED";
 		  }
 		}, 1000);
 	</script>

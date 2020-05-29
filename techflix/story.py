@@ -24,7 +24,6 @@ def story():
         user_['score'] += story_['points']
         user_['end'] = True
         session['user'] = user_
-        print(session)
 
         users.update_one({'username': session['user']['username']},
                          {'$set': {
@@ -119,15 +118,15 @@ def options():
 
 
 @bp.route('/leaderboard')
-@login_required
 def leaderboard():
     from .database import users
     leaderboard_ = users.find().sort([("score", flask_pymongo.DESCENDING), ("time", flask_pymongo.ASCENDING)])
     usernames = []
     scores = []
     ranks = []
+    user_rank = None
     for rank, user in enumerate(leaderboard_, start=1):
-        if user['username'] == session['user']['username']:
+        if session.get('user') and user['username'] == session['user']['username']:
             user_rank = rank
         usernames.append(user['username'])
         scores.append(user['score'])
@@ -142,10 +141,3 @@ def leaderboard():
     )
 
 
-@bp.route('/end')
-@login_required
-def end():
-    if session['user']['end']:
-        return render_template('timer.html')
-
-    return redirect(url_for('story.story'))

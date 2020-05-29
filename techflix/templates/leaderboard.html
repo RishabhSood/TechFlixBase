@@ -25,7 +25,7 @@
 		</ul>
 		<ul class = "users">
 			{% for user in users %}
-				{% if user|string() == session['user']['username']|string() %}
+				{% if user|string() == session.get('user')['username']|string() %}
 				<li class="yellow" style="color: yellow;">{{ user }}</li>
 				{% else %}
 				<li>{{ user }}</li>
