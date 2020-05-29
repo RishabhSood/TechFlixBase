@@ -8,6 +8,10 @@ from flask import (
 
 bp = Blueprint('deployed', __name__)
 
+# Endpoints accessible before event-start:
+EXEMPT_ENDPOINTS = ('deployed.countdown', 'rules')
+COUNTDOWN_ENDPOINT = "deployed.countdown"
+
 TIME_STRING_FORMAT = "%Y-%m-%d %H:%M:%S%z"
 TARGET_TIME_STRING = "2020-05-30 19:00:00+0530"
 
@@ -31,14 +35,12 @@ def countdown():
 
 @bp.before_app_request
 def start():
-    countdown_endpoint = "deployed.countdown"
-
     now = datetime.datetime.now(tz=datetime.timezone.utc)
 
     if now < TARGET_TIME_UTC:
         # There can be endpoint less requests, go figure
-        if (request.endpoint is not None) and (request.endpoint != countdown_endpoint and 'static' not in request.endpoint):
-            return redirect(url_for(countdown_endpoint))
+        if (request.endpoint is not None) and (request.endpoint not in EXEMPT_ENDPOINTS and 'static' not in request.endpoint):
+            return redirect(url_for(COUNTDOWN_ENDPOINT))
         return
-    if request.endpoint == countdown_endpoint:
+    if request.endpoint == COUNTDOWN_ENDPOINT:
         return redirect(url_for('story.story'))
