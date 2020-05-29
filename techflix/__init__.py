@@ -63,4 +63,9 @@ def create_app(test_config=None):
 
         return render_template('home.html')
 
+    # Rulebook
+    @app.route('/rules')
+    def rules():
+        return render_template('rulebook.html')
+
     return app

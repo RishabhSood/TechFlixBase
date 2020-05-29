@@ -2,14 +2,15 @@
 <html>
 <head>
 	<title>Rulebook</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/logo.ico') }}"/>
 	<style type="text/css">
 		@font-face{
-		  font-family: 'Jackpot';
-		  src: url('SpaceAdventure-VG4ZV.ttf');
+            font-family: 'Jackpot';
+            src: url("{{ url_for('static', filename='css/SpaceAdventure-VG4ZV.ttf') }}");
 		}
 		@font-face{
 		  font-family: 'Score';
-		  src: url('CfGlitchCityRegular-L1vZ.ttf');
+            src: url("{{ url_for('static', filename='css/CfGlitchCityRegular-L1vZ.ttf') }}");
 		}
 
 		@import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
