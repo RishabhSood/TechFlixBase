@@ -13,7 +13,7 @@ import datetime
 bp = Blueprint('handlers', __name__)
 
 # Endpoints
-EXEMPT_ENDPOINTS = ('story.leaderboard', 'auth.logout', 'handlers.end')
+EXEMPT_ENDPOINTS = ('story.leaderboard', 'auth.logout')
 END_ENDPOINT = 'handlers.end'
 
 # The end times...
@@ -26,6 +26,7 @@ JS_TIME_STRING_UTC = datetime.datetime.strftime(END_TIME_UTC, JS_TIME_STRING_UTC
 
 
 @bp.route('/end')
+@login_required
 def end():
     """Handling for this in ending()"""
 
@@ -37,16 +38,22 @@ def end():
 
 @bp.before_app_request
 def ending():
-    valid = False
-    # If user reached the end
     user = session.get('user')
-    # If the event ended
-    now = datetime.datetime.now(tz=datetime.timezone.utc)
 
-    if (user and session['user']['end']) or (now >= END_TIME_UTC):
-        if (request.endpoint not in EXEMPT_ENDPOINTS) and ('static' not in request.endpoint):
-            print(request.endpoint)
-            print("Trying to redirect to end")
+    # Never need to be tested
+    if not request.endpoint or request.endpoint in EXEMPT_ENDPOINTS or 'static' in request.endpoint:
+        return
+
+    # If the event ended, log the user out, redirect to leaderboard
+    now = datetime.datetime.now(tz=datetime.timezone.utc)
+    if now > END_TIME:
+        if user:
+            return redirect(url_for('auth.logout'))
+        return redirect(url_for('story.leaderboard'))
+
+    # If user reached the end, redirect to the end
+    if user and session['user']['end']:
+        if request.endpoint != END_ENDPOINT:
             return redirect(url_for(END_ENDPOINT))
         return
 

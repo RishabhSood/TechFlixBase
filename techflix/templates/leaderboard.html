@@ -5,13 +5,20 @@
     <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/logo.ico') }}"/>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/leader.css') }}">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <style type="text/css">
+        {% if not session.get('user') %}
+        .logged-in {
+            visibility: hidden;
+        }
+        {% endif %}
+    </style>
 </head>
 <body>
-<div class="top">
+<div class="top logged-in">
 	GLOBAL RANK <br> {{ user_rank }}
 </div>
 
-<div class="close_button">
+<div class="close_button logged-in">
 	<button onclick="goBack()">
 		X
 	</button>
