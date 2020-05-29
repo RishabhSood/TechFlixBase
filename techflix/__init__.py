@@ -68,4 +68,10 @@ def create_app(test_config=None):
     def rules():
         return render_template('rulebook.html')
 
+    @app.errorhandler(404)
+    def page_not_found(e):
+        """ 404 Handler"""
+        print("Sending to index")
+        return redirect(url_for('index'))
+
     return app
