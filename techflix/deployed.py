@@ -38,7 +38,8 @@ def start():
     now = datetime.datetime.now(tz=datetime.timezone.utc)
 
     if now < TARGET_TIME_UTC:
-        # There can be endpoint less requests, go figure
+        # There can be endpoint-less requests, go figure,
+        # eg: when browser asks for favicon.ico at root if it doesn't receive an icon.
         if (request.endpoint is not None) and (request.endpoint not in EXEMPT_ENDPOINTS and 'static' not in request.endpoint):
             return redirect(url_for(COUNTDOWN_ENDPOINT))
         return

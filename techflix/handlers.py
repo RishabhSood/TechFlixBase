@@ -17,7 +17,7 @@ EXEMPT_ENDPOINTS = ('story.leaderboard', 'auth.logout')
 END_ENDPOINT = 'handlers.end'
 
 # The end times...
-END_TIME_STRING = "2020-06-02 19:30:00+0530"
+END_TIME_STRING = "2020-06-02 19:00:00+0530"
 
 END_TIME = datetime.datetime.strptime(END_TIME_STRING, TIME_STRING_FORMAT)
 END_TIME_UTC = END_TIME.astimezone(tz=datetime.timezone.utc)
@@ -59,5 +59,4 @@ def ending():
 
     # If trying to access url_for('end') illegally
     if request.endpoint == END_ENDPOINT:
-        print("Illegal access")
         return redirect(url_for('index'))
