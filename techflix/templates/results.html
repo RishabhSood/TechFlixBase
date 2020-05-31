@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/resultstyle.css') }}">
+    <title>TECHFLIX - Results</title>
+</head>
+<body>
+    <img src="https://fontmeme.com/permalink/200531/d38de5df805ef7fbcbf480d09bc058ae.png" alt="techflix-results" border="0" style="margin-left: 50%; transform: translate(-50%, 0); margin-top: 5%">
+    <section id='rankcards'>
+        <div class="card">
+            <div class="card-head">
+                <div class="profile-img">
+                  <i class="acc ion-ios-trophy" style="margin-top: 50%;transform: translate(0, -50%); color: #aaa9ad;"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="name">
+                    {{ second }}
+                </div>
+                <div class="desc">
+                    {{ score_second}}
+                </div>
+                <div>
+                    <div style="font-size: 5rem; margin-top: 1.5rem; color: #aaa9ad">
+                        2
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <div class="profile-img">
+                  <i class="acc ion-ios-trophy" style="margin-top: 50%;transform: translate(0, -50%); color: #d4af37"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="name">
+                    {{ first }}
+                </div>
+                <div class="desc">
+                    {{ score_first }}
+                </div>
+                <div>
+                    <div style="font-size: 5rem; margin-top: 1.5rem; color: #d4af37">
+                        1
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-head">
+                <div class="profile-img">
+                  <i class="acc ion-ios-trophy" style="margin-top: 50%;transform: translate(0, -50%); color: #554A3C;"></i>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="name">
+                    {{ third }}
+                </div>
+                <div class="desc">
+                    {{ score_third }}
+                </div>
+                <div>
+                    <div style="font-size: 5rem; margin-top: 1.5rem; color: #554A3C">
+                        3
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
