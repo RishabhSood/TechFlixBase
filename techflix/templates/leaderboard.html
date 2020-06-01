@@ -13,9 +13,9 @@
         {% endif %}
     </style>
 </head>
-<body>
+<body onload="timer()">
 <div class="top logged-in">
-	GLOBAL RANK <br> {{ user_rank }}
+	GLOBAL RANK <br> {{ user_rank }} <br> <p id = "time" style = "font-size: 2rem;"></p> 
 </div>
 
 <div class="close_button logged-in">
@@ -52,6 +52,37 @@
 	goBack = ()=> {
   		window.history.back();
   		localStorage.setItem("pass",17012000);
+	}
+
+	timer = ()=> {
+		// Get the date we're counting down to
+		var countDownDate = new Date("{{ TIME_STRING_UTC }}").getTime();
+
+		// Update the count down every 1 second
+		var x = setInterval(function() {
+
+		  // Get today's date and time
+		  var now = Date.now();
+
+		  // Find the distance between now and the count down date
+		  var distance = countDownDate - now;
+
+		  // Time calculations for days, hours, minutes and seconds
+		  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+		  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+		  // Output the result in an element with id="demo"
+		  document.getElementById("time").innerHTML = "Closing In <br>" + days + "d " + hours + "h "
+		  + minutes + "m " + seconds + "s ";
+
+		  // If the count down is over, write some text
+		  if (distance < 0) {
+		    clearInterval(x);
+		    document.getElementById("time").innerHTML = "-- -- -- --";
+		  }
+		}, 1000);
 	}
 </script>
 
