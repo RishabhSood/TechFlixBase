@@ -6,7 +6,10 @@
   font-family: 'Score';
   src: url('CfGlitchCityRegular-L1vZ.ttf');
 }
-
+@font-face{
+  font-family: 'King';
+  src: url('SpaceAdventure-VG4ZV.ttf');
+}
 @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
 
 body{
@@ -25,7 +28,11 @@ body{
 {
 	background-color: #000000;
 }
-
+#time{
+  font-family: King;
+  color: white;
+  font-size: 2rem;
+}
 .top{
 	display: block;
 	margin-top: 20%;
