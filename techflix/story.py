@@ -120,6 +120,7 @@ def options():
 @bp.route('/leaderboard')
 def leaderboard():
     from .database import users
+    from .handlers import JS_TIME_STRING_UTC as END_TIME_UTC
     leaderboard_ = users.find().sort([("score", flask_pymongo.DESCENDING), ("time", flask_pymongo.ASCENDING)])
     usernames = []
     scores = []
@@ -138,6 +139,7 @@ def leaderboard():
         scores=scores,
         ranks=ranks,
         user_rank=user_rank,
+        TIME_STRING_UTC=END_TIME_UTC,
     )
 
 
