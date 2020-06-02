@@ -1,10 +1,15 @@
 # TECHFLIX
-## Status: Functional, the flagship implementation
+## Status: Functional, Event Completed
 Currently hosted on: http://techflix-env.eba-egeycdfq.ap-south-1.elasticbeanstalk.com/
 
 *Requirements:*
 - Python 3.6+
 - Just create a python environment and run `pip install -r requirements.txt`
+
+*To be prevented / implemented:*
+- Bruteforcing at solutions.
+- Inability to jump back at a point in the story.
+- Dynamic scoring of questions based on number of solves.
 
 Setup for running the app:
 - Copy `setup/config.py` to `instance/config.py`
