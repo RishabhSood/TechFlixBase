@@ -8,12 +8,6 @@ from flask import (
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
 
-    # TODO: Move to instance/env-var-only database_uri
-    # Database Config
-    app.config['MONGO_URI'] = (
-        '***REMOVED***'
-    )
-
     # Load correct config
     if test_config is None:
         app.config.from_pyfile('config.py', silent=True)
