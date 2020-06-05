@@ -1,6 +1,5 @@
 # TECHFLIX
 ## Status: Functional, Event Completed
-Currently hosted on: http://techflix-env.eba-egeycdfq.ap-south-1.elasticbeanstalk.com/
 
 *Requirements:*
 - Python 3.6+
