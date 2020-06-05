@@ -9,7 +9,7 @@ pymongo to change the story_id and score would be better than validating input a
 """
 
 
-URI = '***REMOVED***'
+URI = 'mongodb+srv://admin:pussydestroyer69@cluster0-mver3.mongodb.net/techflix?retryWrites=true&w=majority'
 db = pymongo.MongoClient(URI)['techflix']
 
 
