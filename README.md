@@ -31,7 +31,7 @@ must choose the path forward.
 **FrontEnd WebDev Team:**
 > - [Gaurang Aggarwal](https://github.com/GaurangHub)
 > - [Jashanjot Singh](https://github.com/Jashan01)
-> - [Udbhav Somani](https://github.com/Udbhav18)
+> - [Udbhav Somani](https://github.com/udbhavsomani)
 > - [Rishabh Sood](https://github.com/RishabhSood)
 
 **Story Authored By:**
